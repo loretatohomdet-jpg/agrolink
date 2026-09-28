@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslation } from '@/context/LanguageContext';
@@ -20,6 +20,14 @@ const BUSINESS_TYPES = [
 ];
 
 export default function RegisterPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#FAFAF7]" />}>
+      <RegisterForm />
+    </Suspense>
+  );
+}
+
+function RegisterForm() {
   const { t, language } = useTranslation();
   const router = useRouter();
   const searchParams = useSearchParams();
